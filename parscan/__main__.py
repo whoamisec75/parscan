@@ -18,11 +18,11 @@ Qscan_dir = compatible_path(mem.__file__.replace(compatible_path('/core/config.p
 with open (Qscan_dir+'/db/db.json') as file:
     r3 = json.load(file)
 
-with open(output) as URLs:
-        read_URLs = URLs.readlines()
-        f_url = list(set(read_URLs))
 def main():
     wayback(host, with_subs, output)
+    with open(output) as URLs:
+        read_URLs = URLs.readlines()
+        f_url = list(set(read_URLs))
     with ThreadPoolExecutor(max_workers=concurrency) as exec:
         for u2 in f_url:
             exec.submit(scan(r3, u2))
